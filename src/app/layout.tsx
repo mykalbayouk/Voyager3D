@@ -15,6 +15,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Voyager3D - Interactive 3D Travel Planning",
   description: "Plan your journeys with an interactive 3D globe. Click countries, save travel details, and visualize your adventures.",
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/voyager3d-icon.svg', type: 'image/svg+xml', sizes: '64x64' }
+    ],
+  },
 };
 
 export default function RootLayout({

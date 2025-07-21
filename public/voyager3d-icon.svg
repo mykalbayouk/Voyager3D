@@ -1,0 +1,46 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="globeGradient" cx="0.3" cy="0.3" r="0.7">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="50%" stop-color="#1e40af"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </radialGradient>
+    <radialGradient id="landGradient" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Globe base -->
+  <circle cx="32" cy="32" r="28" fill="url(#globeGradient)" stroke="#1e3a8a" stroke-width="2"/>
+  
+  <!-- Continents -->
+  <!-- North America -->
+  <path d="M 15 20 Q 18 15 25 18 Q 28 20 30 25 Q 25 30 20 28 Q 15 25 15 20 Z" fill="url(#landGradient)"/>
+  
+  <!-- South America -->
+  <path d="M 22 35 Q 25 30 28 35 Q 30 45 25 48 Q 20 45 22 35 Z" fill="url(#landGradient)"/>
+  
+  <!-- Europe/Africa -->
+  <path d="M 35 18 Q 42 16 45 22 Q 48 30 45 40 Q 42 48 38 45 Q 35 35 35 25 Q 33 20 35 18 Z" fill="url(#landGradient)"/>
+  
+  <!-- Asia -->
+  <path d="M 48 15 Q 55 18 52 25 Q 50 30 48 35 Q 45 25 48 15 Z" fill="url(#landGradient)"/>
+  
+  <!-- Grid lines -->
+  <g stroke="#1e40af" stroke-width="1" fill="none" opacity="0.3">
+    <!-- Longitude lines -->
+    <ellipse cx="32" cy="32" rx="28" ry="14"/>
+    <ellipse cx="32" cy="32" rx="28" ry="21"/>
+    <ellipse cx="32" cy="32" rx="21" ry="28"/>
+    <ellipse cx="32" cy="32" rx="14" ry="28"/>
+    
+    <!-- Latitude lines -->
+    <line x1="4" y1="32" x2="60" y2="32"/>
+    <ellipse cx="32" cy="32" rx="28" ry="7"/>
+    <ellipse cx="32" cy="32" rx="28" ry="7" transform="rotate(180 32 32)"/>
+  </g>
+  
+  <!-- Highlight/shine -->
+  <ellipse cx="25" cy="22" rx="8" ry="6" fill="rgba(255,255,255,0.2)" transform="rotate(-20 25 22)"/>
+</svg>
