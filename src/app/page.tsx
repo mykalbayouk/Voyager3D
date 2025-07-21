@@ -77,7 +77,7 @@ export default function Home() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-slate-900 to-slate-800">
-        <div className="text-white text-lg">Loading Globe Travel...</div>
+        <div className="text-white text-lg">Loading Voyager3D...</div>
       </div>
     );
   }
@@ -104,7 +104,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="glass rounded-xl p-4"
           >
-            <h1 className="text-2xl font-bold text-white">Globe Travel</h1>
+            <h1 className="text-2xl font-bold text-white">Voyager3D</h1>
             <p className="text-slate-300 text-sm">Click countries to plan your journey</p>
             
             {/* Quick Debug Info */}

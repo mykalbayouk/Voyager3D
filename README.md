@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Voyager3D
+
+An interactive 3D globe travel planning application built with Next.js, React Three Fiber, and TypeScript. Plan your journeys by clicking on countries, save travel details, and visualize your adventures on a beautiful 3D globe.
+
+## Features
+
+- **Interactive 3D Globe**: Navigate and explore countries with smooth 3D interactions
+- **Travel Planning**: Click on any country to plan your trip details
+- **Travel Data Management**: Save flight information, accommodation, transportation, and custom details
+- **Visual Progress Tracking**: See planned countries highlighted on the globe
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+- **Local Storage**: Your travel plans are saved locally and persist between sessions
+
+## Tech Stack
+
+- **Next.js 15** - React framework with App Router
+- **React Three Fiber** - React renderer for Three.js
+- **Three.js** - 3D graphics library
+- **TypeScript** - Type-safe JavaScript
+- **Tailwind CSS** - Utility-first CSS framework
+- **Framer Motion** - Animation library
+- **Zustand** - State management
 
 ## Getting Started
 
-First, run the development server:
+First, install dependencies:
+
+```bash
+npm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/                 # Next.js app router pages
+├── components/          # React components
+│   ├── Globe/          # 3D globe related components
+│   ├── TravelPanel/    # Travel planning form components
+│   └── UI/             # Reusable UI components
+├── hooks/              # Custom React hooks
+├── types/              # TypeScript type definitions
+└── utils/              # Utility functions and data
+```
 
-## Learn More
+## Usage
 
-To learn more about Next.js, take a look at the following resources:
+1. **Explore the Globe**: Use mouse/touch to rotate and zoom the 3D globe
+2. **Select Countries**: Click on any country to open the travel planning panel
+3. **Plan Your Trip**: Fill in travel details including flights, accommodation, and custom notes
+4. **Save Your Plans**: Your travel data is automatically saved and countries are marked as planned
+5. **Track Progress**: See your planned destinations highlighted on the globe
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Building for Production
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+To create an optimized production build:
 
-## Deploy on Vercel
+```bash
+npm run build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To start the production server:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm start
+```
