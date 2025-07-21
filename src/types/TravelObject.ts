@@ -52,7 +52,7 @@ export interface CustomDetails {
   activities: string[];
   notes: string;
   budget: number;
-  customFields: Record<string, any>;
+  customFields: Record<string, string | number | boolean>;
 }
 
 export interface AiGenerated {

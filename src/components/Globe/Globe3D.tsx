@@ -1,12 +1,22 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
-import { Canvas, useLoader } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Sphere } from '@react-three/drei';
 import * as THREE from 'three';
 import { CountryMesh } from './CountryMesh';
 import { useTravelStore } from '@/hooks/useTravelData';
 import { COUNTRIES } from '@/utils/countryData';
+
+// Import OrbitControls type
+import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
+
+// Extend Window interface
+declare global {
+  interface Window {
+    resetGlobeView?: () => void;
+  }
+}
 
 // Earth component with texture
 const EarthSphere = ({ meshRef }: { meshRef: React.RefObject<THREE.Mesh | null> }) => {
@@ -140,7 +150,7 @@ interface Globe3DProps {
 
 export const Globe3D = ({ autoRotate = false, onResetView }: Globe3DProps) => {
   const meshRef = useRef<THREE.Mesh>(null);
-  const controlsRef = useRef<any>(null);
+  const controlsRef = useRef<OrbitControlsImpl>(null);
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
   const { selectedCountry, setSelectedCountry, savedCountries } = useTravelStore();
 
@@ -159,7 +169,7 @@ export const Globe3D = ({ autoRotate = false, onResetView }: Globe3DProps) => {
   useEffect(() => {
     if (onResetView) {
       // Store the reset function reference so it can be called from outside
-      (window as any).resetGlobeView = () => {
+      window.resetGlobeView = () => {
         if (controlsRef.current) {
           // Reset camera position
           controlsRef.current.reset();

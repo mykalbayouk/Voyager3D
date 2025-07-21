@@ -9,8 +9,8 @@ export const useGlobe = () => {
 
   const resetView = useCallback(() => {
     // Call the global reset function if it exists
-    if (typeof window !== 'undefined' && (window as any).resetGlobeView) {
-      (window as any).resetGlobeView();
+    if (typeof window !== 'undefined' && window.resetGlobeView) {
+      window.resetGlobeView();
     }
     // Also stop auto-rotation when resetting
     setAutoRotate(false);

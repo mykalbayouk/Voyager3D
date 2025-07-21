@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { TravelObject, StandardTravel as StandardTravelType, CustomDetails as CustomDetailsType } from '@/types/TravelObject';
+import { TravelObject } from '@/types/TravelObject';
 import { StandardTravel } from './StandardTravel';
 import { CustomDetails } from './CustomDetails';
 import Button from '@/components/UI/Button';

@@ -9,6 +9,7 @@ import { useTravelStore } from '@/hooks/useTravelData';
 import { useGlobe } from '@/hooks/useGlobe';
 import { storage } from '@/utils/storage';
 import { COUNTRIES } from '@/utils/countryData';
+import { TravelObject } from '@/types/TravelObject';
 
 export default function Home() {
   const { 
@@ -19,7 +20,6 @@ export default function Home() {
     initializeCountryData,
     markCountryAsPlanned,
     markCountryAsSaved,
-    travelData,
     savedCountries
   } = useTravelStore();
   
@@ -54,7 +54,7 @@ export default function Home() {
     console.log('Main page: currentTravelData:', tempCurrentTravelData);
   }, [selectedCountry, getTravelData, initializeCountryData]);
 
-  const handleSaveTravelData = (countryCode: string, data: any) => {
+  const handleSaveTravelData = (countryCode: string, data: TravelObject) => {
     updateTravelData(countryCode, data);
     storage.save(countryCode, data);
     markCountryAsPlanned(countryCode);
