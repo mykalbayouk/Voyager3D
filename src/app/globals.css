@@ -1,22 +1,61 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Globe Travel Custom Colors */
+  --primary: #0F172A;          /* Deep ocean blue */
+  --secondary: #06B6D4;        /* Vibrant teal */
+  --accent: #F59E0B;           /* Warm gold */
+  --success: #10B981;          /* Fresh green */
+  --background-start: #1E293B; /* Gradient start */
+  --background-end: #0F172A;   /* Gradient end */
+  
+  /* Default fallbacks */
+  --background: #0F172A;
+  --foreground: #ededed;
 }
 
 @theme inline {
+  --color-primary-900: #0F172A;
+  --color-primary-800: #1E293B;
+  --color-primary-700: #334155;
+  
+  --color-cyan-500: #06B6D4;
+  --color-cyan-400: #22D3EE;
+  --color-cyan-600: #0891B2;
+  
+  --color-amber-500: #F59E0B;
+  --color-amber-400: #FBBF24;
+  --color-amber-600: #D97706;
+  
+  --color-emerald-500: #10B981;
+  --color-emerald-400: #34D399;
+  --color-emerald-600: #059669;
+  
+  --color-slate-900: #0F172A;
+  --color-slate-800: #1E293B;
+  --color-slate-700: #334155;
+  --color-slate-600: #475569;
+  --color-slate-400: #94A3B8;
+  --color-slate-300: #CBD5E1;
+  
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Global Styles */
+body {
+  background: linear-gradient(to bottom, var(--background-start), var(--background-end));
+  min-height: 100vh;
+  color: var(--foreground);
+}
+
+/* Glass morphism utility */
+.glass {
+  background: rgba(30, 41, 59, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 body {

@@ -16,11 +16,8 @@ export default function Home() {
     setSelectedCountry, 
     updateTravelData, 
     getTravelData,
-    initializeCountryData,
     markCountryAsPlanned,
-    markCountryAsSaved,
-    travelData,
-    savedCountries
+    travelData 
   } = useTravelStore();
   
   const { autoRotate, toggleAutoRotate, resetView } = useGlobe();
@@ -33,32 +30,15 @@ export default function Home() {
     Object.entries(savedData).forEach(([countryCode, data]) => {
       updateTravelData(countryCode, data);
       markCountryAsPlanned(countryCode);
-      markCountryAsSaved(countryCode); // Mark as saved since it's loaded from storage
     });
     
     setIsLoading(false);
-  }, [updateTravelData, markCountryAsPlanned, markCountryAsSaved]);
-
-  // Debug effect to track selectedCountry changes
-  useEffect(() => {
-    console.log('Main page: selectedCountry changed to:', selectedCountry);
-    
-    // Initialize country data when a country is selected
-    if (selectedCountry) {
-      initializeCountryData(selectedCountry);
-    }
-    
-    const tempSelectedCountryData = selectedCountry ? COUNTRIES.find(c => c.code === selectedCountry) : null;
-    const tempCurrentTravelData = selectedCountry ? getTravelData(selectedCountry) : null;
-    console.log('Main page: selectedCountryData:', tempSelectedCountryData);
-    console.log('Main page: currentTravelData:', tempCurrentTravelData);
-  }, [selectedCountry, getTravelData, initializeCountryData]);
+  }, [updateTravelData, markCountryAsPlanned]);
 
   const handleSaveTravelData = (countryCode: string, data: any) => {
     updateTravelData(countryCode, data);
     storage.save(countryCode, data);
     markCountryAsPlanned(countryCode);
-    markCountryAsSaved(countryCode); // Mark as saved when user saves data
     setSelectedCountry(null);
   };
 
@@ -69,11 +49,6 @@ export default function Home() {
   const selectedCountryData = selectedCountry ? COUNTRIES.find(c => c.code === selectedCountry) : null;
   const currentTravelData = selectedCountry ? getTravelData(selectedCountry) : null;
 
-  // Debug logs
-  console.log('Selected country:', selectedCountry);
-  console.log('Selected country data:', selectedCountryData);
-  console.log('Current travel data:', currentTravelData);
-
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-slate-900 to-slate-800">
@@ -83,12 +58,10 @@ export default function Home() {
   }
 
   return (
-    <div className="h-screen flex bg-gradient-to-b from-slate-900 to-slate-800 overflow-hidden relative">
+    <div className="h-screen flex bg-gradient-to-b from-slate-900 to-slate-800 overflow-hidden">
       {/* Globe Section - 70% of screen */}
       <div className="flex-1 relative">
-        <div className={`w-full h-full ${selectedCountry ? 'pointer-events-none' : 'pointer-events-auto'}`}>
-          <Globe3D autoRotate={autoRotate} onResetView={resetView} />
-        </div>
+        <Globe3D />
         <GlobeControls
           onResetView={resetView}
           onToggleAutoRotate={toggleAutoRotate}
@@ -96,7 +69,6 @@ export default function Home() {
         />
         
         {/* Title Overlay */}
-                {/* Title Overlay */}
         <div className="absolute top-6 left-6 z-10">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -106,11 +78,6 @@ export default function Home() {
           >
             <h1 className="text-2xl font-bold text-white">Globe Travel</h1>
             <p className="text-slate-300 text-sm">Click countries to plan your journey</p>
-            
-            {/* Quick Debug Info */}
-            <div className="mt-2 text-xs text-slate-400">
-              Selected: {selectedCountry || 'None'}
-            </div>
           </motion.div>
         </div>
 
@@ -125,7 +92,7 @@ export default function Home() {
             <div className="text-white text-sm">
               <div className="flex items-center gap-2 mb-1">
                 <div className="w-3 h-3 bg-emerald-500 rounded-full"></div>
-                <span>Planned: {savedCountries.size} countries</span>
+                <span>Planned: {Object.keys(travelData).length} countries</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-slate-500 rounded-full"></div>
@@ -144,8 +111,7 @@ export default function Home() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="absolute top-0 right-0 w-[400px] h-full border-l border-slate-700 z-50 pointer-events-auto"
-            style={{ backgroundColor: 'rgba(15, 23, 42, 0.95)' }}
+            className="w-[400px] h-full border-l border-slate-700 relative z-20"
           >
             <TravelForm
               countryCode={selectedCountry}
